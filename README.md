@@ -1,0 +1,1 @@
+# Openl10nTranslationBundle
