@@ -1,0 +1,37 @@
+{
+    "name": "openl10n/translation",
+    "description": "Openl10n Translation library",
+    "type": "library",
+    "homepage": "http://openl10n.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthieu Moquet",
+            "email": "matthieu@moquet.net",
+            "homepage": "http://moquet.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "symfony/symfony": "^2.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Openl10n\\": "src/Openl10n/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Openl10n\\Tests\\": "tests/Openl10n/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}

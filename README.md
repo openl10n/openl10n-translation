@@ -1,1 +1,3 @@
-# Openl10nTranslationBundle
+# Openl10n Translation
+
+Openl10n Translation library.
