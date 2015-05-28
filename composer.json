@@ -25,7 +25,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Openl10n\\Tests\\": "tests/Openl10n/"
+            "Openl10n\\Tests\\": "tests/Openl10n/Tests/"
         }
     },
     "scripts": {
