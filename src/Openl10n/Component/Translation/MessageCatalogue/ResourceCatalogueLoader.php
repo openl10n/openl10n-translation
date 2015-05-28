@@ -4,6 +4,7 @@ namespace Openl10n\Component\Translation\MessageCatalogue;
 
 use Symfony\Component\Translation\Loader\LoaderInterface as ResourceLoader;
 use Symfony\Component\Translation\MessageCatalogue;
+use Symfony\Component\Translation\MessageCatalogueInterface;
 
 /**
  * Load catalogue from resources.
@@ -28,8 +29,8 @@ class ResourceCatalogueLoader implements MessageCatalogueLoader
     /**
      * Adds a Loader.
      *
-     * @param string          $format The name of the loader (@see addResource())
-     * @param LoaderInterface $loader A LoaderInterface instance
+     * @param string         $format The name of the loader (@see addResource())
+     * @param ResourceLoader $loader A LoaderInterface instance
      */
     public function addResourceLoader($format, ResourceLoader $loader)
     {

@@ -3,6 +3,7 @@
 namespace Openl10n\Component\Translation;
 
 use Openl10n\Component\Translation\MessageCatalogue\MessageCatalogueLoader;
+use Symfony\Component\Translation\MessageCatalogueInterface;
 use Symfony\Component\Translation\MessageSelector;
 use Symfony\Component\Translation\TranslatorBagInterface;
 use Symfony\Component\Translation\TranslatorInterface;
