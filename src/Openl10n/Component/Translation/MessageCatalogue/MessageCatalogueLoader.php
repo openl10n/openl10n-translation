@@ -2,6 +2,8 @@
 
 namespace Openl10n\Component\Translation\MessageCatalogue;
 
+use Symfony\Component\Translation\MessageCatalogueInterface;
+
 interface MessageCatalogueLoader
 {
     /**

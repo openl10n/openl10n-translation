@@ -20,6 +20,11 @@ class FileCacheCatalogueLoader implements MessageCatalogueLoader
     private $catalogueLoader;
 
     /**
+     * @var MessageCatalogueInterface[]
+     */
+    private $catalogues = array();
+
+    /**
      * @var string
      */
     private $cacheDir;
@@ -31,7 +36,8 @@ class FileCacheCatalogueLoader implements MessageCatalogueLoader
 
     /**
      * @param MessageCatalogueLoader $catalogueLoader
-     * @param Cache                  $cache
+     * @param string                 $cacheDir
+     * @param boolean                $debug
      */
     public function __construct(MessageCatalogueLoader $catalogueLoader, $cacheDir, $debug = false)
     {

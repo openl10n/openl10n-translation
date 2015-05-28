@@ -31,6 +31,11 @@ class SimpleTranslator implements TranslatorInterface, TranslatorBagInterface
     private $selector;
 
     /**
+     * @var MessageCatalogueInterface[]
+     */
+    private $catalogues = array();
+
+    /**
      * Constructor.
      *
      * @param string                 $locale          The default locale
