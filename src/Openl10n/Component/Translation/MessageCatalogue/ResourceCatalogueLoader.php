@@ -14,17 +14,17 @@ class ResourceCatalogueLoader implements MessageCatalogueLoader
     /**
      * @var MessageCatalogueInterface[]
      */
-    private $catalogues = array();
+    protected $catalogues = array();
 
     /**
      * @var LoaderInterface[]
      */
-    private $loaders = array();
+    protected $loaders = array();
 
     /**
      * @var array
      */
-    private $resources = array();
+    protected $resources = array();
 
     /**
      * Adds a Loader.

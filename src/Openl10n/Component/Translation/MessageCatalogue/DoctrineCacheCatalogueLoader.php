@@ -16,14 +16,14 @@ class DoctrineCacheCatalogueLoader implements MessageCatalogueLoader
      *
      * @var MessageCatalogueLoader
      */
-    private $catalogueLoader;
+    protected $catalogueLoader;
 
     /**
      * Cache provider.
      *
      * @var Cache
      */
-    private $cache;
+    protected $cache;
 
     /**
      * @param MessageCatalogueLoader $catalogueLoader

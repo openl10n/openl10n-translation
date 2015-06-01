@@ -15,19 +15,19 @@ class FallbackCatalogueLoader implements MessageCatalogueLoader
      *
      * @var MessageCatalogueLoader
      */
-    private $catalogueLoader;
+    protected $catalogueLoader;
 
     /**
      * @var MessageCatalogueInterface[]
      */
-    private $catalogues = array();
+    protected $catalogues = array();
 
     /**
      * Fallback locales.
      *
      * @var array
      */
-    private $fallbackLocales = array();
+    protected $fallbackLocales = array();
 
     /**
      * @param MessageCatalogueLoader $catalogueLoader
@@ -86,7 +86,7 @@ class FallbackCatalogueLoader implements MessageCatalogueLoader
         return $this->catalogues[$locale];
     }
 
-    private function computeFallbackLocales($locale)
+    protected function computeFallbackLocales($locale)
     {
         $locales = array();
         foreach ($this->fallbackLocales as $fallback) {
