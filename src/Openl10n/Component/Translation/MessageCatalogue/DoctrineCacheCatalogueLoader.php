@@ -41,14 +41,12 @@ class DoctrineCacheCatalogueLoader implements MessageCatalogueLoader
     public function loadCatalogue($locale)
     {
         if ($this->cache->contains($locale)) {
-            $messages = (array) $this->cache->fetch($locale);
-
-            return new MessageCatalogue($locale, $messages);
+            return $this->cache->fetch($locale);
         }
 
         $catalogue = $this->catalogueLoader->loadCatalogue($locale);
 
-        $this->cache->save($locale, $catalogue->all());
+        $this->cache->save($locale, $catalogue);
 
         return $catalogue;
     }
