@@ -18,11 +18,6 @@ class FallbackCatalogueLoader implements MessageCatalogueLoader
     protected $catalogueLoader;
 
     /**
-     * @var MessageCatalogueInterface[]
-     */
-    protected $catalogues = array();
-
-    /**
      * Fallback locales.
      *
      * @var array
@@ -44,9 +39,6 @@ class FallbackCatalogueLoader implements MessageCatalogueLoader
      */
     public function setFallbackLocales(array $locales)
     {
-        // needed as the fallback locales are linked to the already loaded catalogues
-        $this->catalogues = array();
-
         $this->fallbackLocales = $locales;
     }
 
@@ -65,25 +57,22 @@ class FallbackCatalogueLoader implements MessageCatalogueLoader
      */
     public function loadCatalogue($locale)
     {
-        // Memoization to load catalogue only once
-        if (isset($this->catalogues[$locale])) {
-            return $this->catalogues[$locale];
-        }
+        $catalogues = [];
 
-        $this->catalogues[$locale] = $this->catalogueLoader->loadCatalogue($locale);
+        $catalogues[$locale] = $this->catalogueLoader->loadCatalogue($locale);
 
-        $current = $this->catalogues[$locale];
+        $current = $catalogues[$locale];
 
         foreach ($this->computeFallbackLocales($locale) as $fallback) {
-            if (!isset($this->catalogues[$fallback])) {
-                $this->catalogues[$fallback] = $this->catalogueLoader->loadCatalogue($fallback);
+            if (!isset($catalogues[$fallback])) {
+                $catalogues[$fallback] = $this->catalogueLoader->loadCatalogue($fallback);
             }
 
-            $current->addFallbackCatalogue($this->catalogues[$fallback]);
-            $current = $this->catalogues[$fallback];
+            $current->addFallbackCatalogue($catalogues[$fallback]);
+            $current = $catalogues[$fallback];
         }
 
-        return $this->catalogues[$locale];
+        return $catalogues[$locale];
     }
 
     protected function computeFallbackLocales($locale)

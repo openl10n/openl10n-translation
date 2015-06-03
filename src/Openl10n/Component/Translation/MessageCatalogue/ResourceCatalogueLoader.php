@@ -12,11 +12,6 @@ use Symfony\Component\Translation\MessageCatalogueInterface;
 class ResourceCatalogueLoader implements MessageCatalogueLoader
 {
     /**
-     * @var MessageCatalogueInterface[]
-     */
-    protected $catalogues = array();
-
-    /**
      * @var LoaderInterface[]
      */
     protected $loaders = array();
@@ -54,8 +49,6 @@ class ResourceCatalogueLoader implements MessageCatalogueLoader
         }
 
         $this->resources[$locale][] = array($format, $resource, $domain);
-
-        unset($this->catalogues[$locale]);
     }
 
     /**
@@ -65,13 +58,8 @@ class ResourceCatalogueLoader implements MessageCatalogueLoader
      */
     public function loadCatalogue($locale)
     {
-        // Memoization to load catalogue only once
-        if (isset($this->catalogues[$locale])) {
-            return $this->catalogues[$locale];
-        }
-
         // Create a new catalogue
-        $this->catalogues[$locale] = new MessageCatalogue($locale);
+        $catalogue = new MessageCatalogue($locale);
 
         // Traverse resources to complete catalogue
         $resources = isset($this->resources[$locale]) ? $this->resources[$locale] : [];
@@ -84,11 +72,11 @@ class ResourceCatalogueLoader implements MessageCatalogueLoader
                 throw new \RuntimeException("The \"$name\" translation loader is not registered.");
             }
 
-            $catalogue = $this->loaders[$name]->load($format, $locale, $domain);
-
-            $this->catalogues[$locale]->addCatalogue($catalogue);
+            $catalogue->addCatalogue(
+                $this->loaders[$name]->load($format, $locale, $domain)
+            );
         }
 
-        return $this->catalogues[$locale];
+        return $catalogue;
     }
 }

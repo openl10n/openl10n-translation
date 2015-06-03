@@ -20,11 +20,6 @@ class FileCacheCatalogueLoader implements MessageCatalogueLoader
     private $catalogueLoader;
 
     /**
-     * @var MessageCatalogueInterface[]
-     */
-    private $catalogues = array();
-
-    /**
      * @var string
      */
     private $cacheDir;
@@ -51,35 +46,24 @@ class FileCacheCatalogueLoader implements MessageCatalogueLoader
      */
     public function loadCatalogue($locale)
     {
-        if (!isset($this->catalogues[$locale])) {
-            $this->initializeCacheCatalogue($locale);
-        }
-
-        return $this->catalogues[$locale];
-    }
-
-    private function initializeCacheCatalogue($locale)
-    {
         if (!class_exists('Symfony\Component\Config\ConfigCache')) {
             throw new BadMethodCallException('You must insall symfony/config component to use this class');
         }
 
         $cache = new ConfigCache($this->getCatalogueCachePath($locale), $this->debug);
 
-        if (!$cache->isFresh()) {
-            $this->catalogues[$locale] = $this->catalogueLoader->loadCatalogue($locale);
-
-            $content = $this->dumpCacheContent($this->catalogues[$locale]);
+        if ($cache->isFresh()) {
+            $catalogue = include $cache;
+        } else {
+            $catalogue = $this->catalogueLoader->loadCatalogue($locale);
 
             $cache->write(
-                $content,
-                $this->catalogues[$locale]->getResources()
+                $this->dumpCacheContent($catalogue),
+                $catalogue->getResources()
             );
-
-            return;
         }
 
-        $this->catalogues[$locale] = include $cache;
+        return $catalogue;
     }
 
     private function getCatalogueCachePath($locale)
