@@ -47,7 +47,7 @@ class FileCacheCatalogueLoader implements MessageCatalogueLoader
     public function loadCatalogue($locale)
     {
         if (!class_exists('Symfony\Component\Config\ConfigCache')) {
-            throw new BadMethodCallException('You must insall symfony/config component to use this class');
+            throw new BadMethodCallException('You must install symfony/config component to use this class');
         }
 
         $cache = new ConfigCache($this->getCatalogueCachePath($locale), $this->debug);
