@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the openl10n package.
+ *
+ * (c) Matthieu Moquet <matthieu@moquet.net>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Openl10n\Component\Translation\MessageCatalogue;
 
 use Doctrine\Common\Cache\Cache;
@@ -32,7 +41,7 @@ class FileCacheCatalogueLoader implements MessageCatalogueLoader
     /**
      * @param MessageCatalogueLoader $catalogueLoader
      * @param string                 $cacheDir
-     * @param boolean                $debug
+     * @param bool                   $debug
      */
     public function __construct(MessageCatalogueLoader $catalogueLoader, $cacheDir, $debug = false)
     {

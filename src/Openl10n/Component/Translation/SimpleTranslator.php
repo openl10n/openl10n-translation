@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the openl10n package.
+ *
+ * (c) Matthieu Moquet <matthieu@moquet.net>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Openl10n\Component\Translation;
 
 use Openl10n\Component\Translation\MessageCatalogue\MessageCatalogueLoader;
@@ -34,7 +43,7 @@ class SimpleTranslator implements TranslatorInterface, TranslatorBagInterface
     /**
      * @var MessageCatalogueInterface[]
      */
-    private $catalogues = array();
+    private $catalogues = [];
 
     /**
      * Constructor.
@@ -53,7 +62,7 @@ class SimpleTranslator implements TranslatorInterface, TranslatorBagInterface
     /**
      * {@inheritdoc}
      */
-    public function trans($id, array $parameters = array(), $domain = null, $locale = null)
+    public function trans($id, array $parameters = [], $domain = null, $locale = null)
     {
         if (null === $domain) {
             $domain = 'messages';
@@ -67,7 +76,7 @@ class SimpleTranslator implements TranslatorInterface, TranslatorBagInterface
     /**
      * {@inheritdoc}
      */
-    public function transChoice($id, $number, array $parameters = array(), $domain = null, $locale = null)
+    public function transChoice($id, $number, array $parameters = [], $domain = null, $locale = null)
     {
         if (null === $domain) {
             $domain = 'messages';

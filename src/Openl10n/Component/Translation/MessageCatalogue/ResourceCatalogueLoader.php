@@ -1,10 +1,18 @@
 <?php
 
+/*
+ * This file is part of the openl10n package.
+ *
+ * (c) Matthieu Moquet <matthieu@moquet.net>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Openl10n\Component\Translation\MessageCatalogue;
 
 use Symfony\Component\Translation\Loader\LoaderInterface as ResourceLoader;
 use Symfony\Component\Translation\MessageCatalogue;
-use Symfony\Component\Translation\MessageCatalogueInterface;
 
 /**
  * Load catalogue from resources.
@@ -14,12 +22,12 @@ class ResourceCatalogueLoader implements MessageCatalogueLoader
     /**
      * @var LoaderInterface[]
      */
-    protected $loaders = array();
+    protected $loaders = [];
 
     /**
      * @var array
      */
-    protected $resources = array();
+    protected $resources = [];
 
     /**
      * Adds a Loader.
@@ -48,7 +56,7 @@ class ResourceCatalogueLoader implements MessageCatalogueLoader
             $domain = 'messages';
         }
 
-        $this->resources[$locale][] = array($format, $resource, $domain);
+        $this->resources[$locale][] = [$format, $resource, $domain];
     }
 
     /**

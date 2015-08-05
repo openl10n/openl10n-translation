@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the openl10n package.
+ *
+ * (c) Matthieu Moquet <matthieu@moquet.net>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Openl10n\Tests\Component\Translation;
 
 use Openl10n\Component\Translation\SimpleTranslator;
@@ -17,7 +26,7 @@ class SimpleTranslatorTest extends TestCase
 
         $catalogueLoader->loadCatalogue('en')
             ->willReturn(new MessageCatalogue('en', [
-                'messages' => ['foo' => 'bar']
+                'messages' => ['foo' => 'bar'],
             ]));
 
         $this->assertEquals('bar', $translator->trans('foo'));
@@ -32,7 +41,7 @@ class SimpleTranslatorTest extends TestCase
 
         $catalogueLoader->loadCatalogue('en')
             ->willReturn(new MessageCatalogue('en', [
-                'messages' => ['foo' => '{0}No foo|{1}One foo|]1,Inf]Many foo']
+                'messages' => ['foo' => '{0}No foo|{1}One foo|]1,Inf]Many foo'],
             ]));
 
         $this->assertEquals('No foo', $translator->transChoice('foo', 0));

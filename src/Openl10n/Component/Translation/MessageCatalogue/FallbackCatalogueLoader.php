@@ -1,9 +1,15 @@
 <?php
 
-namespace Openl10n\Component\Translation\MessageCatalogue;
+/*
+ * This file is part of the openl10n package.
+ *
+ * (c) Matthieu Moquet <matthieu@moquet.net>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
-use Doctrine\Common\Cache\Cache;
-use Symfony\Component\Translation\MessageCatalogueInterface;
+namespace Openl10n\Component\Translation\MessageCatalogue;
 
 /**
  * Combine catalogues using fallback locales.
@@ -22,7 +28,7 @@ class FallbackCatalogueLoader implements MessageCatalogueLoader
      *
      * @var array
      */
-    protected $fallbackLocales = array();
+    protected $fallbackLocales = [];
 
     /**
      * @param MessageCatalogueLoader $catalogueLoader
@@ -77,7 +83,7 @@ class FallbackCatalogueLoader implements MessageCatalogueLoader
 
     protected function computeFallbackLocales($locale)
     {
-        $locales = array();
+        $locales = [];
         foreach ($this->fallbackLocales as $fallback) {
             if ($fallback === $locale) {
                 continue;
