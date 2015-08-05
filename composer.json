@@ -17,6 +17,7 @@
         "symfony/symfony": "^2.6"
     },
     "require-dev": {
+        "fabpot/php-cs-fixer": "^1.10",
         "phpunit/phpunit": "^4.5"
     },
     "autoload": {
@@ -30,9 +31,7 @@
         }
     },
     "scripts": {
-        "test": "phpunit"
-    },
-    "config": {
-        "bin-dir": "bin"
+        "test": "phpunit",
+        "lint": "php-cs-fixer fix"
     }
 }
