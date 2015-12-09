@@ -62,7 +62,7 @@ class FileCacheCatalogueLoader implements MessageCatalogueLoader
         $cache = new ConfigCache($this->getCatalogueCachePath($locale), $this->debug);
 
         if ($cache->isFresh()) {
-            $catalogue = include $cache;
+            $catalogue = include $cache->getPath();
         } else {
             $catalogue = $this->catalogueLoader->loadCatalogue($locale);
 
