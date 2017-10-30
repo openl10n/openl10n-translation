@@ -12,6 +12,7 @@
 namespace Openl10n\Component\Translation\MessageCatalogue;
 
 use Doctrine\Common\Cache\Cache;
+use Symfony\Component\Translation\MessageCatalogueInterface;
 
 /**
  * Catalogue loader using the doctrine/cache component.
@@ -48,7 +49,13 @@ class DoctrineCacheCatalogueLoader implements MessageCatalogueLoader
     public function loadCatalogue($locale)
     {
         if ($this->cache->contains($locale)) {
-            return $this->cache->fetch($locale);
+            $catalogue = $this->cache->fetch($locale);
+
+            // Ensure returned object from cache is the correct instance.
+            // Because cache may have been corrupted.
+            if ($catalogue instanceof MessageCatalogueInterface) {
+                return $catalogue;
+            }
         }
 
         $catalogue = $this->catalogueLoader->loadCatalogue($locale);
